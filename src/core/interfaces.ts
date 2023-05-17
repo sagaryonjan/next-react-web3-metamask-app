@@ -1,5 +1,3 @@
-import type { BigNumber } from '@ethersproject/bignumber'
-
 export interface Currency {
     nep: number;
     busd: number;

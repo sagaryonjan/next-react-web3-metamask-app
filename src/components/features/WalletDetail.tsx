@@ -8,7 +8,7 @@ export const WalletDetail : React.FC = () => {
 
     useEffect(() => {
         void metaMask.connectEagerly().catch(() => {
-            console.debug('Failed to connect eagerly to MetaMask')
+            console.error('Failed to connect eagerly to MetaMask')
         })
     }, []);
 

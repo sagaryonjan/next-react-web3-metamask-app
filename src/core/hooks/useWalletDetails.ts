@@ -16,12 +16,10 @@ export const useWalletDetails = () : WalletDetails => {
     const [balance, setBalance] = useState<BigNumber | undefined>(undefined);
 
     useEffect(() => {
-        let stale = false;
-
         const getBalance = async () : Promise<void>  => {
             try {
                 const balance = await provider?.getBalance(account ? account : '');
-                if (!stale) { setBalance(balance); }
+                setBalance(balance);
             } catch (error) {
                 console.error('Error fetching balance:', error);
             }
@@ -30,10 +28,6 @@ export const useWalletDetails = () : WalletDetails => {
         if (provider && account?.length) {
             void getBalance();
         }
-
-        return () => {
-            stale = true;
-        };
     }, [provider, account]);
 
     const formattedBalance = balance !== undefined ? `Ξ ${formatEther(balance)}` : 'Loading...';
